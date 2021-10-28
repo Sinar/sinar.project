@@ -6,6 +6,12 @@
   <configure zcml:condition="installed AccessControl.security">
   <!-- -*- extra stuff goes here -*- -->
 
+    <permission
+        id="sinar.project.AddProject"
+        title="sinar.project: Add Project"
+    />
+
+
 
   </configure>
 
