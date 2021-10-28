@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# from plone.app.textfield import RichText
+from plone.app.textfield import RichText
 # from plone.autoform import directives
 from plone.dexterity.content import Container
 # from plone.namedfile import field as namedfile
@@ -10,7 +10,7 @@ from plone.supermodel import model
 from zope.interface import implementer
 
 
-# from sinar.project import _
+from sinar.project import _
 
 
 class IProject(model.Schema):
@@ -28,10 +28,11 @@ class IProject(model.Schema):
     #     required=True
     # )
 
-    # text = RichText(
-    #     title=_(u'Text'),
-    #     required=False
-    # )
+    project_details = RichText(
+        title=_(u'Project Details'),
+        description=_(u'Detailed executive summary of project'),
+        required=False,
+    )
 
     # url = schema.URI(
     #     title=_(u'Link'),
