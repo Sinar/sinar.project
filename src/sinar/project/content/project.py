@@ -28,11 +28,11 @@ class IProject(model.Schema):
     #     required=True
     # )
 
-    project_details = RichText(
-        title=_(u'Project Details'),
-        description=_(u'Detailed executive summary of project'),
-        required=False,
-    )
+    #project_details = RichText(
+    #    title=_(u'Project Details'),
+    #    description=_(u'Detailed executive summary of project'),
+    #    required=False,
+    #)
 
     # url = schema.URI(
     #     title=_(u'Link'),

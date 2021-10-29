@@ -21,10 +21,13 @@
   <property name="global_allow">True</property>
   <property name="filter_content_types">True</property>
   <property name="allowed_content_types">
-  <!--
     <element value="Document" />
+    <element value="Folder" />
     <element value="File" />
-  -->
+    <element value="Image" />
+    <element value="Activity" />
+    <element value="Citation" />
+    <element value="Resource" />
   </property>
   <!-- Schema, class and security -->
   <property name="add_permission">sinar.project.AddProject</property>
@@ -48,10 +51,11 @@
     <element value="plone.basic"/>
     <element value="plone.locking" />
     <!--<element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />-->
-    <!--<element value="plone.leadimage"/>-->
-    <!--<element value="plone.relateditems"/>-->
-    <!--<element value="plone.richtext"/>-->
-    <!--<element value="plone.tableofcontents"/>-->
+    <element value="plone.leadimage"/>
+    <element value="plone.relateditems"/>
+    <element value="plone.richtext"/>
+    <element value="plone.tableofcontents"/>
+    <element value="sinar.organization.partners"/>
     <!--<element value="plone.versioning" />-->
     <!--<element value="plone.translatable" />-->
     <!--<element value="plone.nextprevioustoggle" />-->
