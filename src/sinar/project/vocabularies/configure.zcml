@@ -1,0 +1,13 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    i18n_domain="sinar.project">
+
+    <!-- -*- extra stuff goes here -*- -->
+
+    <utility
+        component=".projects.ProjectsFactory"
+        name="sinar.project.Projects"
+    />
+
+
+</configure>

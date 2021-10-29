@@ -1,17 +1,13 @@
 # -*- coding: utf-8 -*-
-from sinar.project.content.project import IProject  # NOQA E501
-from sinar.project.testing import SINAR_PROJECT_INTEGRATION_TESTING  # noqa
 from plone import api
 from plone.api.exc import InvalidParameterError
-from plone.app.testing import setRoles
-from plone.app.testing import TEST_USER_ID
+from plone.app.testing import setRoles, TEST_USER_ID
 from plone.dexterity.interfaces import IDexterityFTI
-from zope.component import createObject
-from zope.component import queryUtility
+from sinar.project.content.project import IProject  # NOQA E501
+from sinar.project.testing import SINAR_PROJECT_INTEGRATION_TESTING  # noqa
+from zope.component import createObject, queryUtility
 
 import unittest
-
-
 
 
 class ProjectIntegrationTest(unittest.TestCase):
