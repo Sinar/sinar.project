@@ -5,4 +5,18 @@
 
 <!-- -*- extra stuff goes here -*- -->
 
+   <records interface="plone.app.querystring.interfaces.IQueryField"
+             prefix="plone.app.querystring.field.projects">
+        <value key="title" i18n:translate="">Projects</value>
+        <value key="description" i18n:translate="">Items that are part of these projects</value>
+        <value key="enabled">True</value>
+        <value key="sortable">False</value>
+        <value key="operations">
+            <element>plone.app.querystring.operation.selection.any</element>
+        </value>
+        <value key="vocabulary">sinar.project.Projects</value>
+       <value key="group" i18n:translate="">Metadata</value>
+    </records>
+
+
 </registry>
