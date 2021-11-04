@@ -6,7 +6,7 @@
       metal:use-macro="context/main_template/macros/master">
 <body>
     <metal:block fill-slot="content-core">
-        <div tal:content="structure context/text/output"></div>
+        <div tal:content="structure context/text/output | nothing"></div>
     </metal:block>
 </body>
 </html>
