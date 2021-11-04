@@ -1,18 +1,15 @@
 # -*- coding: utf-8 -*-
 
-from sinar.project import _
 from plone import schema
 from plone.app.z3cform.widget import RelatedItemsFieldWidget, SelectFieldWidget
-from plone.autoform.interfaces import IFormFieldProvider
 from plone.autoform import directives
+from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
-from Products.CMFPlone.utils import safe_hasattr
-from zope.component import adapter
-from zope.interface import Interface
-from zope.interface import implementer
-from zope.interface import provider
 from plone.supermodel.directives import fieldset
-
+from Products.CMFPlone.utils import safe_hasattr
+from sinar.project import _
+from zope.component import adapter
+from zope.interface import implementer, Interface, provider
 
 
 class IProjectsMarker(Interface):
