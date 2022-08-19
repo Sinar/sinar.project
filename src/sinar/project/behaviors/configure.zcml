@@ -10,6 +10,16 @@
     <!-- -*- extra stuff goes here -*- -->
 
     <plone:behavior
+        name="sinar.project.project_dates"
+        title="ProjectDates"
+        description="Start and End Dates for a Project"
+        provides=".project_dates.IProjectDates"
+        factory=".project_dates.ProjectDates"
+        marker=".project_dates.IProjectDatesMarker"
+        />
+
+
+    <plone:behavior
         name="sinar.project.projects"
         title="Projects"
         description="Projects this output is realated to"
