@@ -18,11 +18,18 @@ class IProjectDates(model.Schema):
     """
     """
 
-    project = schema.TextLine(
-        title=_(u'Project'),
-        description=_(u'Give in a project name'),
+    project_start_date = schema.Date(
+        title=_(u'Project Start Date'),
+        description=_(u'The date that the project started'),
         required=False,
     )
+
+    project_end_date = schema.Date(
+        title=_(u'Project End Date'),
+        description=_(u'The date for which the project was completed.'),
+        required=False,
+    )
+
 
 
 @implementer(IProjectDates)
@@ -32,11 +39,21 @@ class ProjectDates(object):
         self.context = context
 
     @property
-    def project(self):
-        if safe_hasattr(self.context, 'project'):
-            return self.context.project
+    def project_start_date(self):
+        if safe_hasattr(self.context, 'project_start_date'):
+            return self.context.project_start_date
         return None
 
-    @project.setter
-    def project(self, value):
-        self.context.project = value
+    @project_start_date.setter
+    def project_start_date(self, value):
+        self.context.project_start_date = value
+
+    @property
+    def project_end_date(self):
+        if safe_hasattr(self.context, 'project_end_date'):
+            return self.context.project_end_date
+        return None
+
+    @project_end_date.setter
+    def project_end_date(self, value):
+        self.context.project_end_date = value

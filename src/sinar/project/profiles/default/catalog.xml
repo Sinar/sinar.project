@@ -5,4 +5,18 @@
         <indexed_attr value="projects"/>
       </index>
       <column value="projects"/>
+
+  <!--<column value="my_meta_column"/>-->
+    <index name="project_start_date" meta_type="DateIndex">
+        <indexed_attr value="project_start_date"/>
+      </index>
+      <column value="project_start_date"/>
+
+  <!--<column value="my_meta_column"/>-->
+    <index name="project_end_date" meta_type="DateIndex">
+        <indexed_attr value="project_end_date"/>
+      </index>
+      <column value="project_end_date"/>
+
+
 </object>
