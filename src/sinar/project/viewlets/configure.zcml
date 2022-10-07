@@ -1,0 +1,20 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="sinar.project">
+
+ <!-- -*- extra stuff goes here -*- -->
+
+  <browser:viewlet
+     name="projects-viewlet"
+     for="plone.app.contenttypes.interfaces.IDocument"
+     manager="plone.app.layout.viewlets.interfaces.IAboveContentTitle"
+     layer="sinar.project.interfaces.ISinarProjectLayer"
+     class=".projects_viewlet.ProjectsViewlet"
+     template="projects-viewlet.pt"
+     permission="zope2.View"
+     />
+
+
+</configure>
