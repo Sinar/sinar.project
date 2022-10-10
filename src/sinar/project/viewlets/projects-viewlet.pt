@@ -1,3 +1,11 @@
-<div class="days_to_conf">
-    ${view/message}
+<div class="projects">
+    <hr />
+    <span tal:repeat="project python: view.projects()">
+        <h5><a tal:attributes="href project/absolute_url" href="">    
+        <span tal:replace="project/title" />
+            </a><br /></h5>
+        <img tal:condition="project/image" tal:attributes="src string:
+        ${project/absolute_url}/@@images/image/thumb" class="img-thumbnail">
+         </span>
+
 </div>

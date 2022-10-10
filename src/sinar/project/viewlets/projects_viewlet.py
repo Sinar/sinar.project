@@ -1,15 +1,21 @@
 # -*- coding: utf-8 -*-
 
 from plone.app.layout.viewlets import ViewletBase
+from plone import api
+from plone.app.uuid.utils import uuidToObject
 
 
 class ProjectsViewlet(ViewletBase):
 
-    def update(self):
-        self.message = self.get_message()
+    def projects(self):
 
-    def get_message(self):
-        return u'My message'
+        objects = []
+        projects = self.context.projects
+        for project in projects:
+            obj = uuidToObject(project)
+            objects.append(obj)
+
+        return objects
 
     def index(self):
         return super(ProjectsViewlet, self).render()
