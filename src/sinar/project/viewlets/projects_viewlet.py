@@ -11,10 +11,10 @@ class ProjectsViewlet(ViewletBase):
 
         objects = []
         projects = self.context.projects
-        for project in projects:
-            obj = uuidToObject(project)
-            objects.append(obj)
-
+        if projects:
+            for project in projects:
+                obj = uuidToObject(project)
+                objects.append(obj)
         return objects
 
     def index(self):
