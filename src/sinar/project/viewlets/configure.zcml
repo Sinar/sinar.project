@@ -26,4 +26,15 @@
      permission="zope2.View"
      />
 
+    <browser:viewlet
+     name="projects-viewlet"
+     for="sinar.citation.content.citation.ICitation"
+     manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+     layer="sinar.project.interfaces.ISinarProjectLayer"
+     class=".projects_viewlet.ProjectsViewlet"
+     template="projects-viewlet.pt"
+     permission="zope2.View"
+     />
+
+
 </configure>
