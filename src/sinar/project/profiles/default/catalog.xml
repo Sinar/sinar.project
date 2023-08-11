@@ -1,11 +1,6 @@
 <?xml version="1.0"?>
 <object name="portal_catalog">
-  <!--<column value="my_meta_column"/>-->
-    <index name="projects" meta_type="KeywordIndex">
-        <indexed_attr value="projects"/>
-      </index>
-      <column value="projects"/>
-
+    
   <!--<column value="my_meta_column"/>-->
     <index name="project_start_date" meta_type="DateIndex">
         <indexed_attr value="project_start_date"/>
@@ -17,6 +12,5 @@
         <indexed_attr value="project_end_date"/>
       </index>
       <column value="project_end_date"/>
-
 
 </object>

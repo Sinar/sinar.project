@@ -10,6 +10,10 @@ from Products.CMFPlone.utils import safe_hasattr
 from sinar.project import _
 from zope.component import adapter
 from zope.interface import implementer, Interface, provider
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
+from plone.app.vocabularies.catalog import CatalogSource
+from collective import dexteritytextindexer
 
 
 class IProjectsMarker(Interface):
@@ -21,15 +25,28 @@ class IProjects(model.Schema):
     """
     """
 
-    directives.widget(projects=SelectFieldWidget)
-    projects = schema.List(
-            title=u'Projects',
-            description=u'Projects that this item is an output of',
-            required=False,
-            value_type=schema.Choice(
-                vocabulary='sinar.project.Projects',
-                ),
-            )
+    # donors
+    dexteritytextindexer.searchable('projects')
+    directives.widget('projects',
+                      RelatedItemsFieldWidget,
+                      pattern_options={
+                          'basePath': '/',
+                          'mode': 'auto',
+                          'favourites': [],
+                      }
+                      )
+
+    projects = RelationList(
+        title=u'Related Projects',
+        description=u'''
+                     Projects that this item is an output or outcome off
+                     ''',
+        required=False,
+        value_type=RelationChoice(
+            source=CatalogSource(portal_type='Project'),
+        ),
+    )
+
 
 @implementer(IProjects)
 @adapter(IProjectsMarker)
