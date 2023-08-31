@@ -1,5 +1,6 @@
 <div class="projects" tal:condition="view/projects">
         <hr />
+        <h4>Project</h4>
         <span tal:repeat="project view/projects">
         <h5><a tal:attributes="href project/absolute_url" href="">    
         <span tal:replace="project/title" />

@@ -25,7 +25,7 @@ class IProjects(model.Schema):
     """
     """
 
-    # donors
+    # Projects
     dexteritytextindexer.searchable('projects')
     directives.widget('projects',
                       RelatedItemsFieldWidget,
@@ -46,7 +46,6 @@ class IProjects(model.Schema):
             source=CatalogSource(portal_type='Project'),
         ),
     )
-
 
 @implementer(IProjects)
 @adapter(IProjectsMarker)
