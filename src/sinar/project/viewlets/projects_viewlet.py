@@ -2,20 +2,15 @@
 
 from plone.app.layout.viewlets import ViewletBase
 from plone import api
-from plone.app.uuid.utils import uuidToObject
+from collective.relationhelpers import api
 
 
 class ProjectsViewlet(ViewletBase):
 
     def projects(self):
 
-        objects = []
-        projects = self.context.projects
-        if projects:
-            for project in projects:
-                obj = uuidToObject(project)
-                objects.append(obj)
-        return objects
+        return api.relations(self.context,
+                             attribute="projects")
 
     def index(self):
         return super(ProjectsViewlet, self).render()
