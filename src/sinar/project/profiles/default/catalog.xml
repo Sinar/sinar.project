@@ -13,4 +13,10 @@
       </index>
       <column value="project_end_date"/>
 
+  <index name="project_uids" meta_type="KeywordIndex">
+      <indexed_attr value="project_uids" />
+  </index>
+  <column value="project_uids" />
+
+
 </object>

@@ -28,5 +28,8 @@
         marker=".projects.IProjectsMarker"
         />
 
+    <adapter 
+        factory=".projects.ProjectsIndexer"
+        name="project_uids" />
 
 </configure>
