@@ -41,7 +41,7 @@ class IProjects(model.Schema):
     projects = RelationList(
         title=u'Related Projects',
         description=u'''
-                     Projects that this item is an output or outcome of
+                     Projects that this item is related to
                      ''',
         required=False,
         value_type=RelationChoice(
