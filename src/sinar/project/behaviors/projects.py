@@ -13,10 +13,9 @@ from zope.interface import implementer, Interface, provider
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from plone.app.vocabularies.catalog import CatalogSource
-from collective import dexteritytextindexer
+from plone.app.dexterity import textindexer
 from plone.indexer.interfaces import IIndexer
 from Products.ZCatalog.interfaces import IZCatalog
-
 
 class IProjectsMarker(Interface):
     pass
@@ -27,8 +26,9 @@ class IProjects(model.Schema):
     """
     """
 
+
     # Projects
-    dexteritytextindexer.searchable('projects')
+    textindexer.searchable('projects')
     directives.widget('projects',
                       RelatedItemsFieldWidget,
                       pattern_options={
