@@ -14,6 +14,8 @@ from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from plone.app.vocabularies.catalog import CatalogSource
 from plone.app.dexterity import textindexer
+from plone.indexer.interfaces import IIndexer
+from Products.ZCatalog.interfaces import IZCatalog
 
 class IProjectsMarker(Interface):
     pass
@@ -24,7 +26,8 @@ class IProjects(model.Schema):
     """
     """
 
-    # donors
+
+    # Projects
     textindexer.searchable('projects')
     directives.widget('projects',
                       RelatedItemsFieldWidget,
@@ -38,14 +41,13 @@ class IProjects(model.Schema):
     projects = RelationList(
         title=u'Related Projects',
         description=u'''
-                     Projects that this item is an output or outcome off
+                     Projects that this item is related to
                      ''',
         required=False,
         value_type=RelationChoice(
             source=CatalogSource(portal_type='Project'),
         ),
     )
-
 
 @implementer(IProjects)
 @adapter(IProjectsMarker)
@@ -62,3 +64,20 @@ class Projects(object):
     @projects.setter
     def projects(self, value):
         self.context.projects = value
+
+
+@implementer(IIndexer)
+@adapter(IProjectsMarker, IZCatalog)
+class ProjectsIndexer(object):
+    """
+    Custom indexer to store uid of related projects for quick lookup
+    """
+
+    def __init__(self, context, catalog):
+        self.projects = IProjectsMarker(context)
+
+    def __call__(self):
+        uids = []
+        for projects in self.projects.projects:
+            uids.append(projects.to_object.UID())
+        return uids

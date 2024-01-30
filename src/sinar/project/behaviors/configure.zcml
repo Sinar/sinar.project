@@ -22,11 +22,14 @@
     <plone:behavior
         name="sinar.project.projects"
         title="Projects"
-        description="Projects this output is related to"
+        description="Projects item is related to"
         provides=".projects.IProjects"
         factory=".projects.Projects"
         marker=".projects.IProjectsMarker"
         />
 
+    <adapter 
+        factory=".projects.ProjectsIndexer"
+        name="project_uids" />
 
 </configure>
