@@ -13,7 +13,10 @@ from zope.interface import implementer, Interface, provider
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from plone.app.vocabularies.catalog import CatalogSource
-from plone.app.dexterity import textindexer
+try:
+    from plone.app.dexterity import textindexer
+except ImportError:
+    from collective import dexteritytextindexer as textindexer
 from plone.indexer.interfaces import IIndexer
 from Products.ZCatalog.interfaces import IZCatalog
 
