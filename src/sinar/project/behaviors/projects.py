@@ -81,6 +81,7 @@ class ProjectsIndexer(object):
 
     def __call__(self):
         uids = []
-        for projects in self.projects.projects:
-            uids.append(projects.to_object.UID())
+        if self.projects.projects:
+            for projects in self.projects.projects:
+                uids.append(projects.to_object.UID())
         return uids
