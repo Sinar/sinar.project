@@ -21,76 +21,77 @@
         
         <div tal:content="structure context/text/output | nothing"></div>
 
-        <div class="container">
+
+        <h2 tal:condition="view/updates">Updates</h2>
+
+        <div class="container" tal:condition="view/updates">
             <div class="row align-items-start">
-                <div class="col-md-4" tal:condition="view/updates">
-                    <div class="card" style="width: 18rem;">
-                      <div class="card-header">
-                        Updates
-                      </div>
-                      <ul class="list-group list-group-flush">
-                          <li class="list-group-item"
-                                     tal:repeat="item view/updates">
-                              <a tal:content="item/title"
-                                 tal:attributes="href item/absolute_url"
-                                  ></a>
-                         </li>
-                      </ul>
-                      </div>
-                </div>
-                <div class="col-md-4" tal:condition="view/events">
-                    <div class="card" style="width: 18rem;">
-                      <div class="card-header">
-                        Events
-                      </div>
-                      <ul class="list-group list-group-flush">
-                          <li class="list-group-item"
-                                     tal:repeat="item view/events">
-                              <a tal:content="item/title"
-                                 tal:attributes="href item/absolute_url"
-                                  ></a>
-                         </li>
-                      </ul>
+                <div class="col-md-3"
+                     tal:repeat="item view/updates">
+                  <img tal:condition="item/image"
+                   tal:attributes="src string:
+                   ${item/absolute_url}/@@images/image/large"
+                    src="..." class="card-img-top" />
+                    <div class="card mb-3">
+                        <div class="card-header">
+                        <span tal:content="item/title | nothing">
+                        </div>
+                        <div class="card-footer">
+                            <a href="" tal:attributes="href item/absolute_url"
+                               class="">Read More</a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-4" tal:condition="view/activities">
-                    <div class="card" style="width: 18rem;">
-                      <div class="card-header">
-                        Activities
-                      </div>
-                      <ul class="list-group list-group-flush">
-                          <li class="list-group-item"
-                                     tal:repeat="item view/activities">
-                              <a tal:content="item/title"
-                                 tal:attributes="href item/absolute_url"
-                                  ></a>
-                         </li>
-                      </ul>
-                      </div>
-                </div>
-                <div class="col-md-4" tal:condition="view/resources">
-                    <div class="card" style="width: 18rem;">
-                      <div class="card-header">
-                        Resources
-                      </div>
-                          <ul class="list-group list-group-flush">
-                                  <li class="list-group-item"
-                                         tal:repeat="item view/resources">
-                                  <!-- countries/type metadat to be
-                                      added later -->
-                                  <!--span
-                                          tal:content="item/resource_type"
-                                          /> -->
-                                  <a tal:content="item/title"
-                                     tal:attributes="href item/absolute_url"
-                                      ></a>
-                             </li>
-                          </ul>
-                      </div>
-                </div>
-
-          </div>
+            </div>
         </div>
+
+        <h2 tal:condition="view/events">Events</h2>
+
+        <div class="container" tal:condition="view/events">
+            <div class="row align-items-start">
+                <div class="col-md-3"
+                     tal:repeat="item view/events">
+                  <img tal:condition="item/image"
+                   tal:attributes="src string:
+                   ${item/absolute_url}/@@images/image/large"
+                    src="..." class="card-img-top" />
+                    <div class="card mb-3">
+                        <div class="card-header">
+                        <span tal:content="item/title | nothing">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 tal:condition="view/resources">Resources</h2>
+
+        <div class="card mb-3" style="max-width: 1024px;" tal:repeat="item view/resources">
+          <div class="row g-0">
+            <div class="col-md-4">
+
+              <img tal:condition="item/image"
+                   tal:attributes="src string:
+                   ${item/absolute_url}/@@images/image/large"
+                src="..." class="img-fluid rounded-start" />
+                
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title" tal:content="item/title">Card title</h5>
+                <small class="text-body-secondary"
+                    tal:content="python:item.effective().strftime('%d %B %Y')">
+                    Published on 
+                </small>
+                <p class="card-text" tal:content="item/description">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <a href="" tal:attributes="href item/absolute_url"
+                               class="">Read More</a>
+
+
+              </div>
+            </div>
+          </div>
+        </div> 
 
     </metal:block>
 </body>
