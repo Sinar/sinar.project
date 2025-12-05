@@ -7,7 +7,8 @@
 <body>
     <metal:block fill-slot="content-core">
 
-        <table class="listing" summary="Project Summary">
+    <h5>Project Summary</h5>
+        <table class="table table-striped table-bordered" summary="Project Summary">
             <tr class="odd">
                 <td>Start Date</td>
                 <td tal:content="context/project_start_date | nothing"></td>
@@ -18,11 +19,33 @@
             </tr>
 
         </table>
+
         
         <div tal:content="structure context/text/output | nothing"></div>
 
 
-        <h2 tal:condition="view/updates">Updates</h2>
+        <h5>Activities</h5>
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Activity</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody tal:repeat="activity view/activities">
+                <tr>
+                    <td> <a class="link-light" tal:attributes="href activity/absolute_url" tal:content="activity/title | nothing"></td>
+                    <td tal:content="python:
+                        view.activity_type(activity.activity_types[0])"></td>
+                    <td tal:content="python: view.activity_status(activity.activity_status)"></td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+        <h5 tal:condition="view/updates">Updates</h5>
 
         <div class="container" tal:condition="view/updates">
             <div class="row align-items-start">
@@ -45,45 +68,66 @@
             </div>
         </div>
 
-        <h2 tal:condition="view/events">Events</h2>
+        <h5 tal:condition="view/events">Events</h5>
 
         <div class="container" tal:condition="view/events">
             <div class="row align-items-start">
                 <div class="col-md-3"
                      tal:repeat="item view/events">
+                        <a href="" tal:attributes="href
+                           item/absolute_url">
                   <img tal:condition="item/image"
                    tal:attributes="src string:
                    ${item/absolute_url}/@@images/image/large"
                     src="..." class="card-img-top" />
+                        </a>
                     <div class="card mb-3">
-                        <div class="card-header">
-                        <span tal:content="item/title | nothing">
+                        <div class="card-body">
+                        <a href="" tal:attributes="href
+                           item/absolute_url">
+                        <strong tal:content="item/title | nothing">
+                            <br />
+                        </a>
+                        <small class="text-body-secondary"
+                            tal:content="python: plone_view.toLocalizedTime(item.start, long_format=1) ">
+                        </small><span tal
+                                      condition="item/location">
+                            <br /></span><small
+                                                                 class="text-body-secondary" tal:content="item/location |
+                                                     nothing"></small>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <h2 tal:condition="view/resources">Resources</h2>
+        <h5 tal:condition="view/resources">Resources</h5>
 
-        <div class="card mb-3" style="max-width: 1024px;" tal:repeat="item view/resources">
+        <div class="card mb-3" style="max-width: 1000px;" tal:repeat="item view/resources">
           <div class="row g-0">
-            <div class="col-md-4">
+            <div class="col-md-3">
 
               <img tal:condition="item/image"
                    tal:attributes="src string:
-                   ${item/absolute_url}/@@images/image/large"
+                   ${item/absolute_url}/@@images/image/mini"
                 src="..." class="img-fluid rounded-start" />
                 
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <h5 class="card-title" tal:content="item/title">Card title</h5>
+                <strong class="card-title" tal:content="item/title">Card
+                    title</strong>
+                <br />
                 <small class="text-body-secondary"
                     tal:content="python:item.effective().strftime('%d %B %Y')">
                     Published on 
                 </small>
-                <p class="card-text" tal:content="item/description">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <small class="card-text"
+                    tal:content="item/description">This is a wider card
+                       with supporting text below as a natural lead-in
+                       to additional content. This content is a little
+                       bit longer.</small>
                             <a href="" tal:attributes="href item/absolute_url"
                                class="">Read More</a>
 

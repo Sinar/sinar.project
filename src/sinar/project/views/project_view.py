@@ -4,6 +4,8 @@ from plone.dexterity.browser.view import DefaultView
 from plone import api
 from collective.relationhelpers import api
 from operator import attrgetter
+from zope.component import getUtility
+from zope.schema.interfaces import IVocabularyFactory
 from sinar.project import _
 
 
@@ -18,6 +20,26 @@ class ProjectView(DefaultView):
     def __call__(self):
         # Implement your own actions:
         return super(ProjectView, self).__call__()
+
+    def activity_status(self,title):
+
+        factory = getUtility(IVocabularyFactory,
+                             'sinar.activity.ActivityStatus')
+
+        vocabulary = factory(self)
+        term = vocabulary.getTerm(title)
+        return term.title
+
+    def activity_type(self, title):
+
+        factory = getUtility(IVocabularyFactory,
+                             'sinar.activity.ActivityTypes')
+
+        vocabulary = factory(self)
+
+        term = vocabulary.getTerm(title)
+        return term.title
+
 
     def related_items(self, portal_type, relation):
         """Get related content"""
@@ -42,16 +64,16 @@ class ProjectView(DefaultView):
         return sorted_items
 
     def events(self):
-        items = self.related_items("Project Event", "output_of")
+        items = self.related_items("Activity", "projects")
 
-        sorted_items = sorted(items, key=lambda obj: obj.effective(),
+        sorted_items = sorted(items, key=lambda obj: obj.start,
                               reverse=True)
 
         return sorted_items
 
 
     def activities(self):
-        items = self.related_items("Project Activity", "output_of")
+        items = self.related_items("ProjectActivity", "projects")
 
         sorted_items = sorted(items, key=lambda obj: obj.effective(),
                               reverse=True)
