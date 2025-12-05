@@ -20,6 +20,78 @@
         </table>
         
         <div tal:content="structure context/text/output | nothing"></div>
+
+        <div class="container">
+            <div class="row align-items-start">
+                <div class="col-md-4" tal:condition="view/updates">
+                    <div class="card" style="width: 18rem;">
+                      <div class="card-header">
+                        Updates
+                      </div>
+                      <ul class="list-group list-group-flush">
+                          <li class="list-group-item"
+                                     tal:repeat="item view/updates">
+                              <a tal:content="item/title"
+                                 tal:attributes="href item/absolute_url"
+                                  ></a>
+                         </li>
+                      </ul>
+                      </div>
+                </div>
+                <div class="col-md-4" tal:condition="view/events">
+                    <div class="card" style="width: 18rem;">
+                      <div class="card-header">
+                        Events
+                      </div>
+                      <ul class="list-group list-group-flush">
+                          <li class="list-group-item"
+                                     tal:repeat="item view/events">
+                              <a tal:content="item/title"
+                                 tal:attributes="href item/absolute_url"
+                                  ></a>
+                         </li>
+                      </ul>
+                    </div>
+                </div>
+                <div class="col-md-4" tal:condition="view/activities">
+                    <div class="card" style="width: 18rem;">
+                      <div class="card-header">
+                        Activities
+                      </div>
+                      <ul class="list-group list-group-flush">
+                          <li class="list-group-item"
+                                     tal:repeat="item view/activities">
+                              <a tal:content="item/title"
+                                 tal:attributes="href item/absolute_url"
+                                  ></a>
+                         </li>
+                      </ul>
+                      </div>
+                </div>
+                <div class="col-md-4" tal:condition="view/resources">
+                    <div class="card" style="width: 18rem;">
+                      <div class="card-header">
+                        Resources
+                      </div>
+                          <ul class="list-group list-group-flush">
+                                  <li class="list-group-item"
+                                         tal:repeat="item view/resources">
+                                  <!-- countries/type metadat to be
+                                      added later -->
+                                  <!--span
+                                          tal:content="item/resource_type"
+                                          /> -->
+                                  <a tal:content="item/title"
+                                     tal:attributes="href item/absolute_url"
+                                      ></a>
+                             </li>
+                          </ul>
+                      </div>
+                </div>
+
+          </div>
+        </div>
+
     </metal:block>
 </body>
 </html>

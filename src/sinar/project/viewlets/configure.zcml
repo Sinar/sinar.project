@@ -16,9 +16,40 @@
      permission="zope2.View"
      />
 
+<browser:viewlet
+     name="projects-viewlet"
+     for="sinar.activity.content.project_activity.IProjectActivity"
+     manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+     layer="sinar.project.interfaces.ISinarProjectLayer"
+     class=".projects_viewlet.ProjectsViewlet"
+     template="projects-viewlet.pt"
+     permission="zope2.View"
+     />
+
+
   <browser:viewlet
      name="projects-viewlet"
      for="sinar.resource.content.resource.IResource"
+     manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+     layer="sinar.project.interfaces.ISinarProjectLayer"
+     class=".projects_viewlet.ProjectsViewlet"
+     template="projects-viewlet.pt"
+     permission="zope2.View"
+     />
+
+<browser:viewlet
+     name="projects-viewlet"
+     for="plone.app.contenttypes.interfaces.INewsItem"
+     manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+     layer="sinar.project.interfaces.ISinarProjectLayer"
+     class=".projects_viewlet.ProjectsViewlet"
+     template="projects-viewlet.pt"
+     permission="zope2.View"
+     />
+
+<browser:viewlet
+     name="projects-viewlet"
+     for="sinar.article.content.article.IArticle"
      manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
      layer="sinar.project.interfaces.ISinarProjectLayer"
      class=".projects_viewlet.ProjectsViewlet"
