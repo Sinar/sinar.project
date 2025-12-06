@@ -10,6 +10,16 @@
     <!-- -*- extra stuff goes here -*- -->
 
     <plone:behavior
+        name="sinar.project.project_content_collections"
+        title="ProjectContentCollections"
+        description="This behavior provides fields to link to collections for Resources, Activity, Events and Updates related to a project."
+        provides=".project_content_collections.IProjectContentCollections"
+        factory=".project_content_collections.ProjectContentCollections"
+        marker=".project_content_collections.IProjectContentCollectionsMarker"
+        />
+
+
+    <plone:behavior
         name="sinar.project.project_dates"
         title="ProjectDates"
         description="Start and End Dates for a Project"
