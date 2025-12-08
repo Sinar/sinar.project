@@ -61,7 +61,7 @@ class ProjectView(DefaultView):
         sorted_items = sorted(items, key=lambda obj: obj.effective(),
                               reverse=True)
 
-        return sorted_items
+        return sorted_items[:3]
 
     def events(self):
         items = self.related_items("Activity", "projects")
@@ -69,7 +69,7 @@ class ProjectView(DefaultView):
         sorted_items = sorted(items, key=lambda obj: obj.start,
                               reverse=True)
 
-        return sorted_items
+        return sorted_items[:3]
 
 
     def activities(self):
@@ -86,4 +86,4 @@ class ProjectView(DefaultView):
         sorted_items = sorted(items, key=lambda obj: obj.effective(),
                               reverse=True)
 
-        return sorted_items
+        return sorted_items[:5]

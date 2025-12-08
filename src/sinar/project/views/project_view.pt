@@ -35,7 +35,10 @@
             </thead>
             <tbody tal:repeat="activity view/activities">
                 <tr>
-                    <td> <a class="link-light" tal:attributes="href activity/absolute_url" tal:content="activity/title | nothing"></td>
+                    <td> <a class="link-light" tal:attributes="href
+                            activity/absolute_url"
+                                                  tal:content="activity/title
+                                                               | nothing"></a></td>
                     <td tal:content="python:
                         view.activity_type(activity.activity_types[0])"></td>
                     <td tal:content="python: view.activity_status(activity.activity_status)"></td>
@@ -43,18 +46,27 @@
             </tbody>
         </table>
 
-
-
-        <h5 tal:condition="view/updates">Updates</h5>
+        <div class="container" id="updates-title" tal:condition="view/updates">
+            <div class="row align-items-start">
+                <div class="col-md-8">
+                    <h5>Updates</h5>
+                </div>
+                <div class="col-md-2">
+                    <a tal:attributes="href context/project_updates_collection/to_object/absolute_url"
+                       tal:condition="context/project_updates_collection | nothing"
+                    href="http://">View all updates</a>
+                </div>
+            </div>
+        </div>
 
         <div class="container" tal:condition="view/updates">
             <div class="row align-items-start">
-                <div class="col-md-3"
+                <div class="col-md-4"
                      tal:repeat="item view/updates">
                   <img tal:condition="item/image"
                    tal:attributes="src string:
                    ${item/absolute_url}/@@images/image/large"
-                    src="..." class="card-img-top" />
+                    src="..." class="card-img-top rounded-top" />
                     <div class="card mb-3">
                         <div class="card-header">
                         <span tal:content="item/title | nothing">
@@ -68,11 +80,24 @@
             </div>
         </div>
 
-        <h5 tal:condition="view/events">Events</h5>
+        <div tal:condition="view/events" id="events-title" class="container">
+            <div class="row align-items-start">
+                <div class="col-md-8">
+                    <h5>Events</h5>
+                </div>
+                <div class="col-md-2">
+                    <a tal:attributes="href
+                                       context/project_events_collection/to_object/absolute_url
+                                       | nothing"
+                       tal:condition="context/project_events_collection| nothing"
+                       href="">View all events</a>
+                </div>
+            </div>
+        </div>
 
         <div class="container" tal:condition="view/events">
             <div class="row align-items-start">
-                <div class="col-md-3"
+                <div class="col-md-4"
                      tal:repeat="item view/events">
                         <a href="" tal:attributes="href
                            item/absolute_url">
@@ -102,7 +127,25 @@
             </div>
         </div>
 
-        <h5 tal:condition="view/resources">Resources</h5>
+        <hr />
+
+        <div tal:condition="view/resources" class="container"
+             id="resources-title">
+            <div class="row align-items-start">
+                <div class="col-md-8">
+                    <h5>Resources</h5>
+                </div>
+                <div class="col-md-2">
+                    <a tal:attributes="href
+                                       context/project_resources_collection/to_object/absolute_url
+                                       | nothing"
+                       tal:condition="context/project_resources_collection
+                                      | nothing"
+                    href="">View all resources</a>
+                </div>
+            </div>
+        </div>
+
 
         <div class="card mb-3" style="max-width: 1000px;" tal:repeat="item view/resources">
           <div class="row g-0">

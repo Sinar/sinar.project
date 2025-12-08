@@ -9,6 +9,8 @@ from zope.component import adapter
 from zope.interface import Interface
 from zope.interface import implementer
 from zope.interface import provider
+from z3c.relationfield.schema import RelationChoice
+from plone.app.vocabularies.catalog import CatalogSource
 
 
 class IProjectContentCollectionsMarker(Interface):
@@ -20,10 +22,31 @@ class IProjectContentCollections(model.Schema):
     """
     """
 
-    project = schema.TextLine(
-        title=_(u'Project'),
-        description=_(u'Give in a project name'),
+    project_updates_collection = RelationChoice(
+        title=_("Project Updates Collection"),
+        description=_(
+            "Select the collection to show project updates."
+        ),
         required=False,
+        source=CatalogSource(portal_type='Collection'),
+    )
+
+    project_events_collection = RelationChoice(
+        title=_("Project Events Collection"),
+        description=_(
+            "Select the collection to show project events."
+        ),
+        required=False,
+        source=CatalogSource(portal_type='Collection'),
+    )
+        
+    project_resources_collection = RelationChoice(
+        title=_("Project Resources Collection"),
+        description=_(
+            "Select the collection to show project resourcess."
+        ),
+        required=False,
+        source=CatalogSource(portal_type='Collection'),
     )
 
 
@@ -34,11 +57,31 @@ class ProjectContentCollections(object):
         self.context = context
 
     @property
-    def project(self):
-        if safe_hasattr(self.context, 'project'):
-            return self.context.project
+    def project_updates_collection(self):
+        if safe_hasattr(self.context, 'project_updates_collection'):
+            return self.context.project_updates_collection
         return None
 
-    @project.setter
-    def project(self, value):
-        self.context.project = value
+    @project_updates_collection.setter
+    def project_updates_collection(self, value):
+        self.context.project_updates_collection = value
+
+    @property
+    def project_events_collection(self):
+        if safe_hasattr(self.context, 'project_events_collection'):
+            return self.context.project_events_collection
+        return None
+
+    @project_events_collection.setter
+    def project_events_collection(self, value):
+        self.context.project_events_collection = value
+
+    @property
+    def project_resources_collection(self):
+        if safe_hasattr(self.context, 'project_resources_collection'):
+            return self.context.project_resources_collection
+        return None
+
+    @project_resources_collection.setter
+    def project_resources_collection(self, value):
+        self.context.project_resources_collection = value
