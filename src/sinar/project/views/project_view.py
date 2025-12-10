@@ -81,7 +81,7 @@ class ProjectView(DefaultView):
         return sorted_items
 
     def resources(self):
-        items = self.related_items("Resource", "output_of")
+        items = self.related_items("Resource", "projects")
 
         sorted_items = sorted(items, key=lambda obj: obj.effective(),
                               reverse=True)
