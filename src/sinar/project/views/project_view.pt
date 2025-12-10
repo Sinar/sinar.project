@@ -48,7 +48,7 @@
 
         <div class="container" id="updates-title" tal:condition="view/updates">
             <div class="row align-items-start">
-                <div class="col-md-8">
+                <div class="col-md-7">
                     <h5>Updates</h5>
                 </div>
                 <div class="col-md-2">
@@ -59,30 +59,25 @@
             </div>
         </div>
 
-        <div class="container" tal:condition="view/updates">
-            <div class="row align-items-start">
-                <div class="col-md-4"
-                     tal:repeat="item view/updates">
-                  <img tal:condition="item/image"
-                   tal:attributes="src string:
-                   ${item/absolute_url}/@@images/image/large"
+        <div class="card-group" tal:condition="view/updates">
+          <div class="card"
+               tal:repeat="item view/updates">
+               <img tal:condition="item/image"
+                    tal:attributes="src string: ${item/absolute_url}/@@images/image/large"
                     src="..." class="card-img-top rounded-top" />
-                    <div class="card mb-3">
-                        <div class="card-header">
-                        <span tal:content="item/title | nothing">
-                        </div>
-                        <div class="card-footer">
-                            <a href="" tal:attributes="href item/absolute_url"
-                               class="">Read More</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="card-body">
+              <h5 class="card-title" tal:content="item/title|nothing">Card title</h5>
             </div>
+            <div class="card-footer">
+                <a href="" tal:attributes="href item/absolute_url"
+                   class="">Read More</a>
+            </div>
+          </div>
         </div>
 
         <div tal:condition="view/events" id="events-title" class="container">
             <div class="row align-items-start">
-                <div class="col-md-8">
+                <div class="col-md-7">
                     <h5>Events</h5>
                 </div>
                 <div class="col-md-2">
@@ -95,44 +90,32 @@
             </div>
         </div>
 
-        <div class="container" tal:condition="view/events">
-            <div class="row align-items-start">
-                <div class="col-md-4"
-                     tal:repeat="item view/events">
-                        <a href="" tal:attributes="href
-                           item/absolute_url">
-                  <img tal:condition="item/image"
-                   tal:attributes="src string:
-                   ${item/absolute_url}/@@images/image/large"
-                    src="..." class="card-img-top" />
-                        </a>
-                    <div class="card mb-3">
-                        <div class="card-body">
-                        <a href="" tal:attributes="href
+        <div class="card-group" tal:condition="view/events">
+          <div class="card"
+               tal:repeat="item view/events">
+               <img tal:condition="item/image"
+                    tal:attributes="src string: ${item/absolute_url}/@@images/image/large"
+                    src="..." class="card-img-top rounded-top" />
+            <div class="card-body">
+               <a href="" tal:attributes="href
                            item/absolute_url">
                         <strong tal:content="item/title | nothing">
                             <br />
                         </a>
                         <small class="text-body-secondary"
                             tal:content="python: plone_view.toLocalizedTime(item.start, long_format=1) ">
-                        </small><span tal
-                                      condition="item/location">
+                        </small><span talcondition="item/location">
                             <br /></span><small
-                                                                 class="text-body-secondary" tal:content="item/location |
-                                                     nothing"></small>
-
-                        </div>
-                    </div>
-                </div>
+                            class="text-body-secondary"
+                        tal:content="item/location|nothing"></small>
             </div>
+          </div>
         </div>
-
-        <hr />
 
         <div tal:condition="view/resources" class="container"
              id="resources-title">
             <div class="row align-items-start">
-                <div class="col-md-8">
+                <div class="col-md-7">
                     <h5>Resources</h5>
                 </div>
                 <div class="col-md-2">
