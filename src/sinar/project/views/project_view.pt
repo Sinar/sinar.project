@@ -47,57 +47,45 @@
         </table>
 
         <div class="container" id="updates-title" tal:condition="view/updates">
-            <div class="row align-items-start">
-                <div class="col-md-7">
                     <h5>Updates</h5>
                 </div>
-                <div class="col-md-2">
-                    <a tal:attributes="href context/project_updates_collection/to_object/absolute_url"
-                       tal:condition="context/project_updates_collection | nothing"
-                    href="http://">View all updates</a>
-                </div>
-            </div>
-        </div>
 
-        <div class="card-group" tal:condition="view/updates">
-          <div class="card"
-               tal:repeat="item view/updates">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div class="col" tal:repeat="item view/updates">
+            <div class="card h-100" >
                <img tal:condition="item/image"
                     tal:attributes="src string: ${item/absolute_url}/@@images/image/large"
                     src="..." class="card-img-top rounded-top" />
-            <div class="card-body">
-              <h5 class="card-title" tal:content="item/title|nothing">Card title</h5>
-            </div>
-            <div class="card-footer">
-                <a href="" tal:attributes="href item/absolute_url"
-                   class="">Read More</a>
+                <div class="card-body">
+                  <h5 class="card-title" tal:content="item/title|nothing">Card title</h5>
+                </div>
+                <div class="card-footer">
+                    <a href="" tal:attributes="href item/absolute_url"
+                       class="">Read More</a>
+                </div>
             </div>
           </div>
         </div>
 
+        <div class="text-center" id="view-all-updates">
+                    <a class="btn btn-secondary" tal:attributes="href context/project_updates_collection/to_object/absolute_url"
+                       tal:condition="context/project_updates_collection | nothing"
+                    href="http://">View all updates</a>
+                </div>
+
+
         <div tal:condition="view/events" id="events-title" class="container">
-            <div class="row align-items-start">
-                <div class="col-md-7">
                     <h5>Events</h5>
-                </div>
-                <div class="col-md-2">
-                    <a tal:attributes="href
-                                       context/project_events_collection/to_object/absolute_url
-                                       | nothing"
-                       tal:condition="context/project_events_collection| nothing"
-                       href="">View all events</a>
-                </div>
-            </div>
         </div>
 
-        <div class="card-group" tal:condition="view/events">
-          <div class="card"
-               tal:repeat="item view/events">
+        <div class="row row-cols-1 row-cols-md-3 g-3">
+          <div class="col" tal:repeat="item view/events">
+            <div class="card h-100" >
                <img tal:condition="item/image"
                     tal:attributes="src string: ${item/absolute_url}/@@images/image/large"
                     src="..." class="card-img-top rounded-top" />
-            <div class="card-body">
-               <a href="" tal:attributes="href
+                <div class="card-body">
+                       <a href="" tal:attributes="href
                            item/absolute_url">
                         <strong tal:content="item/title | nothing">
                             <br />
@@ -108,25 +96,23 @@
                             <br /></span><small
                             class="text-body-secondary"
                         tal:content="item/location|nothing"></small>
+
+                </div>
             </div>
           </div>
+        </div>
+    
+        <div class="text-center" id="view-all-events">
+                    <a class="btn btn-secondary" tal:attributes="href
+                                       context/project_events_collection/to_object/absolute_url
+                                       | nothing"
+                       tal:condition="context/project_events_collection| nothing"
+                       href="">View all events</a>
         </div>
 
         <div tal:condition="view/resources" class="container"
              id="resources-title">
-            <div class="row align-items-start">
-                <div class="col-md-7">
                     <h5>Resources</h5>
-                </div>
-                <div class="col-md-2">
-                    <a tal:attributes="href
-                                       context/project_resources_collection/to_object/absolute_url
-                                       | nothing"
-                       tal:condition="context/project_resources_collection
-                                      | nothing"
-                    href="">View all resources</a>
-                </div>
-            </div>
         </div>
 
 
@@ -164,6 +150,16 @@
             </div>
           </div>
         </div> 
+
+        <div class="text-center" id="view-all-resources">
+                    <a class="btn btn-secondary" tal:attributes="href
+                                       context/project_resources_collection/to_object/absolute_url
+                                       | nothing"
+                       tal:condition="context/project_resources_collection
+                                      | nothing"
+                    href="">View all resources</a>
+        </div>
+
 
     </metal:block>
 </body>
