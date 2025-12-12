@@ -6,12 +6,12 @@
 
         <div class="row row-cols-1 row-cols-md-6 g-4">
           <div class="col" tal:repeat="item view/projects">
-            <div class="card h-50" >
+            <div class="card h-100 bg-light" >
                <img tal:condition="item/image"
                     tal:attributes="src string: ${item/absolute_url}/@@images/image/thumb"
                     src="..." class="card-img-top rounded-top" />
                 <div class="card-body">
-                  <span class="card-title small"
+                  <span class="card-subtitle small fw-semi-medium"
                       tal:content="item/title|nothing">Card title</span>
                 </div>
             </div>
