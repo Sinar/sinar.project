@@ -1,11 +1,21 @@
 <div class="projects" tal:condition="view/projects">
+
         <hr />
-        <h4>Project</h4>
-        <span tal:repeat="project view/projects">
-        <h5><a tal:attributes="href project/absolute_url" href="">    
-        <span tal:replace="project/title" />
-            </a><br /></h5>
-        <img tal:condition="project/image" tal:attributes="src string:
-        ${project/absolute_url}/@@images/image/thumb" class="img-thumbnail">
-         </span>
+
+        <h6>Related Project</h6>
+
+        <div class="row row-cols-1 row-cols-md-6 g-4">
+          <div class="col" tal:repeat="item view/projects">
+            <div class="card h-50" >
+               <img tal:condition="item/image"
+                    tal:attributes="src string: ${item/absolute_url}/@@images/image/thumb"
+                    src="..." class="card-img-top rounded-top" />
+                <div class="card-body">
+                  <span class="card-title small"
+                      tal:content="item/title|nothing">Card title</span>
+                </div>
+            </div>
+          </div>
+        </div>
+
 </div>
