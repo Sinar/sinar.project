@@ -17,6 +17,15 @@ class ProjectView(DefaultView):
     # the configure.zcml registration of this view.
     # template = ViewPageTemplateFile('project_view.pt')
 
+    # We define resource types we consider as "updates or news item"
+    # Update cards will only show these, while Reseources will filter
+    # them out to avoid deuplication
+
+    # This removes the need for separate "News Item" and "Article"
+    # types. All are Resources with different resource_type values.
+
+    update_types = ["pressstatement", "newsmedia", "updates"]
+
     def __call__(self):
         # Implement your own actions:
         return super(ProjectView, self).__call__()
@@ -40,7 +49,6 @@ class ProjectView(DefaultView):
         term = vocabulary.getTerm(title)
         return term.title
 
-
     def related_items(self, portal_type, relation):
         """Get related content"""
         items = []
@@ -49,16 +57,17 @@ class ProjectView(DefaultView):
                 items.append(item)
         return items
 
+        
     def updates(self):
 
         items = []
-        for item in api.backrelations(self.context, attribute="projects"):
-            if item is not None and item.portal_type == "News Item":
-                items.append(item)
-            elif item is not None and item.portal_type == "Article":
-                items.append(item)
 
-        sorted_items = sorted(items, key=lambda obj: obj.effective(),
+        items = self.related_items("Resource", "projects")
+
+        updates = [item for item in items if item.resource_type in
+                   self.update_types]
+
+        sorted_items = sorted(updates, key=lambda obj: obj.effective(),
                               reverse=True)
 
         return sorted_items[:3]
@@ -83,7 +92,10 @@ class ProjectView(DefaultView):
     def resources(self):
         items = self.related_items("Resource", "projects")
 
-        sorted_items = sorted(items, key=lambda obj: obj.effective(),
+        filtered_items = [item for item in items if item.resource_type not in
+                          self.update_types]
+
+        sorted_items = sorted(filtered_items, key=lambda obj: obj.effective(),
                               reverse=True)
 
         return sorted_items[:5]
