@@ -39,9 +39,17 @@
                             activity/absolute_url"
                                                   tal:content="activity/title
                                                                | nothing"></a></td>
-                    <td tal:content="python:
-                        view.activity_type(activity.activity_types[0])"></td>
-                    <td tal:content="python: view.activity_status(activity.activity_status)"></td>
+                    <td><span
+                        tal:condition="activity/activity_types"
+                        tal:content="python:
+                        view.activity_type(activity.activity_types[0])
+                        | nothing" /></td>
+                    <td>
+                        <span
+                        tal:condition="activity/activity_status"
+                        tal:content="python:
+                        view.activity_status(activity.activity_status) |
+                        nothing" /></td>
                 </tr>
             </tbody>
         </table>
