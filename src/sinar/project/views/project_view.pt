@@ -43,13 +43,13 @@
                         tal:condition="activity/activity_types"
                         tal:content="python:
                         view.activity_type(activity.activity_types[0])
-                        | nothing" /></td>
+                        or None" /></td>
                     <td>
                         <span
                         tal:condition="activity/activity_status"
                         tal:content="python:
-                        view.activity_status(activity.activity_status) |
-                        nothing" /></td>
+                        view.activity_status(activity.activity_status)
+                        or None" /></td>
                 </tr>
             </tbody>
         </table>
