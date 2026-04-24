@@ -31,7 +31,6 @@ class IProjectDates(model.Schema):
     )
 
 
-
 @implementer(IProjectDates)
 @adapter(IProjectDatesMarker)
 class ProjectDates(object):

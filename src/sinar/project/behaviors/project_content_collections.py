@@ -1,16 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from sinar.project import _
-from plone import schema
+from plone.app.vocabularies.catalog import CatalogSource
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
 from Products.CMFPlone.utils import safe_hasattr
-from zope.component import adapter
-from zope.interface import Interface
-from zope.interface import implementer
-from zope.interface import provider
+from sinar.project import _
 from z3c.relationfield.schema import RelationChoice
-from plone.app.vocabularies.catalog import CatalogSource
+from zope.component import adapter
+from zope.interface import implementer, Interface, provider
 
 
 class IProjectContentCollectionsMarker(Interface):
@@ -39,7 +36,7 @@ class IProjectContentCollections(model.Schema):
         required=False,
         source=CatalogSource(portal_type='Collection'),
     )
-        
+
     project_resources_collection = RelationChoice(
         title=_("Project Resources Collection"),
         description=_(

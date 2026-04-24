@@ -80,7 +80,7 @@ class ProjectIntegrationTest(unittest.TestCase):
             self.portal,
             'project_id',
             title='Project container',
-         )
+        )
         self.parent = self.portal[parent_id]
         with self.assertRaises(InvalidParameterError):
             api.content.create(

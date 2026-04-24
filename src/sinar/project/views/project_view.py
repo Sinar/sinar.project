@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from plone.dexterity.browser.view import DefaultView
 from plone import api
-from collective.relationhelpers import api
-from operator import attrgetter
+from plone.dexterity.browser.view import DefaultView
 from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
-from sinar.project import _
 
 
 # from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -30,7 +27,7 @@ class ProjectView(DefaultView):
         # Implement your own actions:
         return super(ProjectView, self).__call__()
 
-    def activity_status(self,title):
+    def activity_status(self, title):
 
         factory = getUtility(IVocabularyFactory,
                              'sinar.activity.ActivityStatus')
@@ -57,7 +54,6 @@ class ProjectView(DefaultView):
                 items.append(item)
         return items
 
-        
     def updates(self):
 
         items = []
@@ -79,7 +75,6 @@ class ProjectView(DefaultView):
                               reverse=True)
 
         return sorted_items[:3]
-
 
     def activities(self):
         items = self.related_items("ProjectActivity", "projects")

@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-from sinar.project.behaviors.project_content_collections import IProjectContentCollectionsMarker
-from sinar.project.testing import SINAR_PROJECT_INTEGRATION_TESTING  # noqa
-from plone.app.testing import setRoles
-from plone.app.testing import TEST_USER_ID
+from plone.app.testing import setRoles, TEST_USER_ID
 from plone.behavior.interfaces import IBehavior
+from sinar.project.behaviors.project_content_collections import (
+    IProjectContentCollectionsMarker,
+)
+from sinar.project.testing import SINAR_PROJECT_INTEGRATION_TESTING  # noqa
 from zope.component import getUtility
 
 import unittest

@@ -1,24 +1,26 @@
 # -*- coding: utf-8 -*-
 
-from plone import schema
-from plone.app.z3cform.widget import RelatedItemsFieldWidget, SelectFieldWidget
+from plone.app.vocabularies.catalog import CatalogSource
+from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
-from plone.supermodel.directives import fieldset
+
 from Products.CMFPlone.utils import safe_hasattr
-from sinar.project import _
+
+from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.component import adapter
 from zope.interface import implementer, Interface, provider
-from z3c.relationfield.schema import RelationChoice
-from z3c.relationfield.schema import RelationList
-from plone.app.vocabularies.catalog import CatalogSource
+
+
 try:
     from plone.app.dexterity import textindexer
 except ImportError:
     from collective import dexteritytextindexer as textindexer
+
 from plone.indexer.interfaces import IIndexer
 from Products.ZCatalog.interfaces import IZCatalog
+
 
 class IProjectsMarker(Interface):
     pass
@@ -28,7 +30,6 @@ class IProjectsMarker(Interface):
 class IProjects(model.Schema):
     """
     """
-
 
     # Projects
     textindexer.searchable('projects')
@@ -51,6 +52,7 @@ class IProjects(model.Schema):
             source=CatalogSource(portal_type='Project'),
         ),
     )
+
 
 @implementer(IProjects)
 @adapter(IProjectsMarker)

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from plone.app.textfield import RichText
+
 # from plone.autoform import directives
 from plone.dexterity.content import Container
 # from plone.namedfile import field as namedfile
 from plone.supermodel import model
-from sinar.project import _
+
 # from plone.supermodel.directives import fieldset
 # from z3c.form.browser.radio import RadioFieldWidget
 # from zope import schema
@@ -26,11 +26,11 @@ class IProject(model.Schema):
     #     required=True
     # )
 
-    #project_details = RichText(
+    # project_details = RichText(
     #    title=_(u'Project Details'),
     #    description=_(u'Detailed executive summary of project'),
     #    required=False,
-    #)
+    # )
 
     # url = schema.URI(
     #     title=_(u'Link'),
