@@ -7,9 +7,9 @@ from plone.app.layout.viewlets import ViewletBase
 class ProjectsViewlet(ViewletBase):
 
     def projects(self):
-
-        return api.relations(self.context,
-                             attribute="projects")
+        relations = api.relation.get(source=self.context,
+                                     relationship="projects")
+        return [relation.to_object for relation in relations]
 
     def index(self):
         return super(ProjectsViewlet, self).render()
