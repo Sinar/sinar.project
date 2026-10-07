@@ -49,7 +49,10 @@ class ProjectView(DefaultView):
     def related_items(self, portal_type, relation):
         """Get related content"""
         items = []
-        for item in api.backrelations(self.context, attribute=relation):
+        relations = api.relation.get(target=self.context,
+                                     relationship=relation)
+        for rel in relations:
+            item = rel.from_object
             if item is not None and item.portal_type == portal_type:
                 items.append(item)
         return items
